@@ -30,7 +30,6 @@ namespace AES.Info.Saugumas
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,7 +40,6 @@ namespace AES.Info.Saugumas
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.ECBButton = new System.Windows.Forms.RadioButton();
@@ -51,6 +49,7 @@ namespace AES.Info.Saugumas
             this.label9 = new System.Windows.Forms.Label();
             this.decryptionIVtextBox = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,16 +61,6 @@ namespace AES.Info.Saugumas
             this.label1.Size = new System.Drawing.Size(292, 41);
             this.label1.TabIndex = 0;
             this.label1.Text = "AES ALGORITHM";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.DetectUrls = false;
-            this.richTextBox1.Location = new System.Drawing.Point(22, 216);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.richTextBox1.Size = new System.Drawing.Size(377, 222);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
             // 
             // label2
             // 
@@ -100,7 +89,7 @@ namespace AES.Info.Saugumas
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(324, 444);
+            this.button1.Location = new System.Drawing.Point(324, 242);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -146,7 +135,7 @@ namespace AES.Info.Saugumas
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(755, 444);
+            this.button2.Location = new System.Drawing.Point(755, 242);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 12;
@@ -163,18 +152,9 @@ namespace AES.Info.Saugumas
             this.label7.TabIndex = 11;
             this.label7.Text = "Text to decrypt:";
             // 
-            // richTextBox2
-            // 
-            this.richTextBox2.DetectUrls = false;
-            this.richTextBox2.Location = new System.Drawing.Point(453, 216);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(377, 43);
-            this.richTextBox2.TabIndex = 10;
-            this.richTextBox2.Text = "";
-            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(674, 444);
+            this.button3.Location = new System.Drawing.Point(674, 242);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 13;
@@ -183,7 +163,7 @@ namespace AES.Info.Saugumas
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(235, 444);
+            this.button4.Location = new System.Drawing.Point(235, 242);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 23);
             this.button4.TabIndex = 14;
@@ -200,6 +180,7 @@ namespace AES.Info.Saugumas
             this.ECBButton.TabIndex = 15;
             this.ECBButton.Text = "ECB";
             this.ECBButton.UseVisualStyleBackColor = true;
+            this.ECBButton.CheckedChanged += new System.EventHandler(this.ECBButton_CheckedChanged);
             // 
             // CBCButton
             // 
@@ -212,6 +193,7 @@ namespace AES.Info.Saugumas
             this.CBCButton.TabStop = true;
             this.CBCButton.Text = "CBC";
             this.CBCButton.UseVisualStyleBackColor = true;
+            this.CBCButton.CheckedChanged += new System.EventHandler(this.CBCButton_CheckedChanged);
             // 
             // label8
             // 
@@ -247,17 +229,26 @@ namespace AES.Info.Saugumas
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(453, 299);
+            this.textBox3.Location = new System.Drawing.Point(22, 216);
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBox3.Size = new System.Drawing.Size(377, 20);
             this.textBox3.TabIndex = 21;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(453, 216);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBox4.Size = new System.Drawing.Size(377, 20);
+            this.textBox4.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 484);
+            this.ClientSize = new System.Drawing.Size(856, 281);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.decryptionIVtextBox);
@@ -269,7 +260,6 @@ namespace AES.Info.Saugumas
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -278,7 +268,6 @@ namespace AES.Info.Saugumas
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -291,7 +280,6 @@ namespace AES.Info.Saugumas
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
@@ -302,7 +290,6 @@ namespace AES.Info.Saugumas
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.RadioButton ECBButton;
@@ -312,6 +299,7 @@ namespace AES.Info.Saugumas
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox decryptionIVtextBox;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 
