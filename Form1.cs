@@ -25,17 +25,16 @@ namespace AES.Info.Saugumas
             encryptionIVtextBox.Text = "hdueiknbmvlqw234";
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (fileDialog.ShowDialog(this) == DialogResult.OK)
-                textBox3.Text = System.IO.File.ReadAllText(fileDialog.FileName.ToString());
+            try
+            {
+                CopyFromFile(textBox3);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -144,6 +143,69 @@ namespace AES.Info.Saugumas
             encryptionIVtextBox.Text = "";
             decryptionIVtextBox.ReadOnly = true;
             encryptionIVtextBox.ReadOnly = true;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CopyFromFile(textBox4);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void CopyFromFile(TextBox temp)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //fileDialog.Filter = "Text Files|*.doc|*.docx|*.txt|*.text";
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                temp.Text = File.ReadAllText(fileDialog.FileName.ToString());
+            }
+        }
+
+        private void WriteToFile(string text) // teksto įrašymas į failą pagal path
+        {
+            if(String.IsNullOrEmpty(text))
+                throw new Exception("No text to write!");
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //fileDialog.Filter = "Text Files|*.doc|*.docx|*.txt|*.text";
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                using (StreamWriter writer = new StreamWriter(fileDialog.FileName.ToString()))
+                {
+                    writer.Write(text);
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                    WriteToFile(textBox3.Text);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WriteToFile(textBox4.Text);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }

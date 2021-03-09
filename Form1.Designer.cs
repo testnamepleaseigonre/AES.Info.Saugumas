@@ -50,6 +50,8 @@ namespace AES.Info.Saugumas
             this.decryptionIVtextBox = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -160,10 +162,11 @@ namespace AES.Info.Saugumas
             this.button3.TabIndex = 13;
             this.button3.Text = "Save to file";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(235, 242);
+            this.button4.Location = new System.Drawing.Point(154, 242);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 23);
             this.button4.TabIndex = 14;
@@ -243,11 +246,33 @@ namespace AES.Info.Saugumas
             this.textBox4.Size = new System.Drawing.Size(377, 20);
             this.textBox4.TabIndex = 22;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(243, 242);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 23;
+            this.button5.Text = "Save to file";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(585, 242);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(83, 23);
+            this.button6.TabIndex = 24;
+            this.button6.Text = "Copy from file";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 281);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label9);
@@ -271,7 +296,6 @@ namespace AES.Info.Saugumas
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +324,8 @@ namespace AES.Info.Saugumas
         private System.Windows.Forms.TextBox decryptionIVtextBox;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
