@@ -21,8 +21,8 @@ namespace AES.Info.Saugumas
         public Form1()
         {
             InitializeComponent();
-            textBox1.Text = "qwrtedsutikh3254";
-            encryptionIVtextBox.Text = "hdueiknbmvlqw234";
+            //textBox1.Text = "qwrtedsutikh3254";
+            //encryptionIVtextBox.Text = "hdueiknbmvlqw234";
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace AES.Info.Saugumas
             }
         }
 
-        private void encryption(string encryptionKey, string encryptionText, string IValue)
+        private void encryption(string encryptionKey, string encryptionText, string IValue) //AES sifravimo logika 
         {
             MemoryStream memoryStream = new MemoryStream();
             byte[] encryptionTextBytes = encoding.GetBytes(encryptionText);
@@ -80,9 +80,6 @@ namespace AES.Info.Saugumas
                 provider.Mode = CipherMode.ECB;
 
             CryptoStream cryptoStream = new CryptoStream(memoryStream, provider.CreateEncryptor(), CryptoStreamMode.Write);
-            //ICryptoTransform icrypt = provider.CreateEncryptor(provider.Key, provider.IV);
-            //byte[] encryptedTextBytes = icrypt.TransformFinalBlock(encryptionTextBytes, 0, encryptionTextBytes.Length);
-            //icrypt.Dispose();
             cryptoStream.Write(encryptionTextBytes, 0, encryptionTextBytes.Length);
             cryptoStream.FlushFinalBlock();
 
@@ -90,7 +87,7 @@ namespace AES.Info.Saugumas
             textBox4.Text = encoding.GetString(encryptedTextBytes);
         }
 
-        private void decryption(string decryptionKey, string decryptionText, string IValue)
+        private void decryption(string decryptionKey, string decryptionText, string IValue) //AES desifravimo logika 
         {
             byte[] decryptionTextBytes = encoding.GetBytes(decryptionText);
             provider.Key = encoding.GetBytes(decryptionKey);
@@ -109,7 +106,7 @@ namespace AES.Info.Saugumas
             textBox3.Text = encoding.GetString(decryptedTextBytes);
         }
 
-        private void validateInputDataForEncryption()
+        private void validateInputDataForEncryption() //Duomenu validacija pries sifravima
         {
             if (String.IsNullOrWhiteSpace(textBox1.Text))
                 throw new Exception("Plese enter the key value!");
@@ -119,7 +116,7 @@ namespace AES.Info.Saugumas
                 throw new Exception("Plese fill in text field!");
         }
 
-        private void validateInputDataForDecryption()
+        private void validateInputDataForDecryption() //Duomenu validacija pries desifravima
         {
             if (String.IsNullOrWhiteSpace(textBox2.Text))
                 throw new Exception("Plese enter the key value!");
@@ -129,15 +126,13 @@ namespace AES.Info.Saugumas
                 throw new Exception("Plese fill in text field!");
         }
 
-        private void CBCButton_CheckedChanged(object sender, EventArgs e)
+        private void CBCButton_CheckedChanged(object sender, EventArgs e) //CBC sifravimo modos aktyvavimas
         {
-            //decryptionIVtextBox.Text = "";
-            //encryptionIVtextBox.Text = "";
             decryptionIVtextBox.ReadOnly = false;
             encryptionIVtextBox.ReadOnly = false;
         }
 
-        private void ECBButton_CheckedChanged(object sender, EventArgs e)
+        private void ECBButton_CheckedChanged(object sender, EventArgs e) //ECB sifravimo modos aktyvavimas
         {
             decryptionIVtextBox.Text = "";
             encryptionIVtextBox.Text = "";
@@ -161,7 +156,6 @@ namespace AES.Info.Saugumas
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //fileDialog.Filter = "Text Files|*.doc|*.docx|*.txt|*.text";
             if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 temp.Text = File.ReadAllText(fileDialog.FileName.ToString());
@@ -174,7 +168,6 @@ namespace AES.Info.Saugumas
                 throw new Exception("No text to write!");
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //fileDialog.Filter = "Text Files|*.doc|*.docx|*.txt|*.text";
             if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 using (StreamWriter writer = new StreamWriter(fileDialog.FileName.ToString()))
